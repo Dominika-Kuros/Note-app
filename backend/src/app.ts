@@ -17,7 +17,7 @@ app.use(morgan("dev"));
 app.use(express.json());
 app.use(
   cors({
-    origin: ["https://note-app-api.vercel.app"],
+    origin: ["https://note-app-api-two.vercel.app"],
     methods: ["POST", "GET", "PATCH", "DELETE"],
     credentials: true,
   })
