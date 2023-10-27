@@ -8,20 +8,13 @@ import session from "express-session";
 import env from "./util/validateEnv";
 import MongoStore from "connect-mongo";
 import requiresAuth from "./middleware/auth";
-import cors from "cors";
 
 const app = express();
 
 app.use(morgan("dev"));
 
 app.use(express.json());
-app.use(
-  cors({
-    origin: ["https://note-app-api-two.vercel.app"],
-    methods: ["POST", "GET", "PATCH", "DELETE"],
-    credentials: true,
-  })
-);
+
 
 app.use(
   session({
