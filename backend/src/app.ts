@@ -11,7 +11,7 @@ import requiresAuth from "./middleware/auth";
 import cors from "cors";
 
 const app = express();
-app.use(cors());
+app.use(cors({ origin: "https://note-app-client-green.vercel.app/" }));
 app.use(morgan("dev"));
 
 app.use(express.json());
