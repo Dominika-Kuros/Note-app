@@ -4,8 +4,8 @@
   "description": "",
   "main": "dist/server.js",
   "scripts": {
-    "start": "node api/index.ts",
-    "server": "nodemon api/index.js",
+    "start": "node index.ts",
+    "server": "nodemon index.js",
     "lint": "eslint . --ext .ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
