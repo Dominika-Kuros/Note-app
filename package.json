@@ -1,10 +1,10 @@
 {
-  "name": "backend",
+  "name": "note-app",
   "version": "1.0.0",
   "description": "",
-  "main": "dist/server.js",
+  "main": "server.js",
   "scripts": {
-    "start": "backend/dist/server.js",
+    "start": "server.js",
     "lint": "eslint . --ext .ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
