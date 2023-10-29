@@ -1,8 +1,8 @@
 "use strict";
 
-var app_1 = require("./src/app");
-var validateEnv_1 = require("./src/util/validateEnv");
-var mongoose_1 = require("mongoose");
+import app_1 from "./src/app";
+import validateEnv_1 from "./src/util/validateEnv";
+import mongoose_1 from "mongoose";
 var port = validateEnv_1["default"].PORT;
 mongoose_1["default"]
     .connect(validateEnv_1["default"].MONGO_CONNECTION_STRING)
