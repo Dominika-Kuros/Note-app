@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-var-requires */
 "use strict";
 exports.__esModule = true;
 var app_1 = require("./src/app");
