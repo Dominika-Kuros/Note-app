@@ -8,10 +8,10 @@ import session from "express-session";
 import env from "./util/validateEnv";
 import MongoStore from "connect-mongo";
 import requiresAuth from "./middleware/auth";
-import cors from "cors";
+import path from "path";
 
 const app = express();
-app.use(cors({ origin: "https://note-app-client-green.vercel.app/" }));
+
 app.use(morgan("dev"));
 
 app.use(express.json());
@@ -33,6 +33,16 @@ app.use(
 
 app.use("/api/users", userRoutes);
 app.use("/api/notes", requiresAuth, notesRoutes);
+
+app.use(express.static(path.join(__dirname, "./frontend/build")));
+app.get("*", function (_, res) {
+  res.sendFile(
+    path.join(__dirname, "./frontend/build/index.html"),
+    function (err) {
+      res.status(500).send(err);
+    }
+  );
+});
 
 app.use((req, res, next) => {
   next(createHttpError(404, "Endpoint not found"));

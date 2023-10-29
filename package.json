@@ -1,11 +1,10 @@
 {
-  "name": "backend",
+  "name": "note-app",
   "version": "1.0.0",
   "description": "",
-  "main": "api/index.ts",
+  "main": "index.ts",
   "scripts": {
-    "start": "nodemon api/index.ts",
-    "server": "nodemon api/index.ts",
+    "start": "node index.ts",
     "lint": "eslint . --ext .ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

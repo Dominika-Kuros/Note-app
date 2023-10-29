@@ -2,7 +2,7 @@ import { ConflictError, UnauthorizedError } from "../errors/http_errors";
 import { Note } from "../models/note";
 import { User } from "../models/user";
 
-const baseULR = "https://note-app-fawn-delta.vercel.app";
+
 
 async function fetchData(input: RequestInfo, init?: RequestInit) {
   const response = await fetch(input, init);
@@ -27,18 +27,18 @@ async function fetchData(input: RequestInfo, init?: RequestInit) {
 }
 
 export async function getLoggedInUser(): Promise<User> {
-  const response = await fetchData(baseULR + "/api/users", { method: "GET" });
+  const response = await fetchData("//users", { method: "GET" });
   return response.json();
 }
 
 export interface SignUpCredentials {
-    username: string,
-    email: string,
-    password: string,
+  username: string;
+  email: string;
+  password: string;
 }
 
 export async function signUp(credentials: SignUpCredentials): Promise<User> {
-  const response = await fetchData(baseULR + "/api/users/signup", {
+  const response = await fetchData("/users/signup", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -54,7 +54,7 @@ export interface LoginCredentials {
 }
 
 export async function login(credentials: LoginCredentials): Promise<User> {
-  const response = await fetchData(baseULR + "/api/users/login", {
+  const response = await fetchData("/users/login", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -65,11 +65,11 @@ export async function login(credentials: LoginCredentials): Promise<User> {
 }
 
 export async function logout() {
-  await fetchData(baseULR + "/api/users/logout", { method: "POST" });
+  await fetchData("/users/logout", { method: "POST" });
 }
 
 export async function fetchNotes(): Promise<Note[]> {
-  const response = await fetchData(baseULR + "/api/notes", { method: "GET" });
+  const response = await fetchData("/notes", { method: "GET" });
   return response.json();
 }
 
@@ -79,7 +79,7 @@ export interface NoteInput {
 }
 
 export async function createNote(note: NoteInput): Promise<Note> {
-  const response = await fetchData(baseULR + "/api/notes", {
+  const response = await fetchData("/notes", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -93,7 +93,7 @@ export async function updateNote(
   noteId: string,
   note: NoteInput
 ): Promise<Note> {
-  const response = await fetchData(baseULR + "/api/notes/" + noteId, {
+  const response = await fetchData("/notes/" + noteId, {
     method: "PATCH",
     headers: {
       "Content-Type": "application/json",
@@ -104,5 +104,5 @@ export async function updateNote(
 }
 
 export async function deleteNote(noteId: string) {
-  await fetchData(baseULR + "/api/notes/" + noteId, { method: "DELETE" });
+  await fetchData("/notes/" + noteId, { method: "DELETE" });
 }
