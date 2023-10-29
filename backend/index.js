@@ -1,5 +1,5 @@
 "use strict";
-exports.__esModule = true;
+
 var app_1 = require("./src/app");
 var validateEnv_1 = require("./src/util/validateEnv");
 var mongoose_1 = require("mongoose");
