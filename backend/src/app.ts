@@ -1,15 +1,27 @@
+import MongoStore from "connect-mongo";
+import cors from "cors";
 import "dotenv/config";
 import express, { NextFunction, Request, Response } from "express";
+import session from "express-session";
+import createHttpError, { isHttpError } from "http-errors";
+import morgan from "morgan";
+import requiresAuth from "./middleware/auth";
 import notesRoutes from "./routes/notes";
 import userRoutes from "./routes/users";
-import morgan from "morgan";
-import createHttpError, { isHttpError } from "http-errors";
-import session from "express-session";
 import env from "./util/validateEnv";
-import MongoStore from "connect-mongo";
-import requiresAuth from "./middleware/auth";
-import cors from "cors";
-import path from "path";
+import mongoose from "mongoose";
+
+const port = env.PORT;
+
+mongoose
+  .connect(env.MONGO_CONNECTION_STRING)
+  .then(() => {
+    console.log("Mongoose connected");
+    app.listen(port, () => {
+      console.log("Server running on port: " + port);
+    });
+  })
+  .catch(console.error);
 
 const app = express();
 
