@@ -1,29 +1,22 @@
 import "dotenv/config";
 import express, { NextFunction, Request, Response } from "express";
-import notesRoutes from "./src/routes/notes";
-import userRoutes from "./src/routes/users";
+import notesRoutes from "./routes/notes";
+import userRoutes from "./routes/users";
 import morgan from "morgan";
 import createHttpError, { isHttpError } from "http-errors";
 import session from "express-session";
-import env from "./src/util/validateEnv";
+import env from "./util/validateEnv";
 import MongoStore from "connect-mongo";
-import requiresAuth from "./src/middleware/auth";
-import path from "path";
+import requiresAuth from "./middleware/auth";
+import cors from "cors";
 
 const app = express();
 
 app.use(morgan("dev"));
+app.use((cors as (options: cors.CorsOptions) => express.RequestHandler)({}));
 
 app.use(express.json());
-app.use(express.static(path.join(__dirname, "./frontend/build")));
-app.get("*", function (_, res) {
-  res.sendFile(
-    path.join(__dirname, "./frontend/build/index.html"),
-    function (err) {
-      res.status(500).send(err);
-    }
-  );
-});
+app.use(cors());
 
 app.use(
   session({
