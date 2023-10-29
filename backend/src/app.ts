@@ -9,13 +9,22 @@ import env from "./util/validateEnv";
 import MongoStore from "connect-mongo";
 import requiresAuth from "./middleware/auth";
 import cors from "cors";
+import path from "path";
 
 const app = express();
 
 app.use(morgan("dev"));
-app.use((cors as (options: cors.CorsOptions) => express.RequestHandler)({}));
 
 app.use(express.json());
+app.use(express.static(path.join(__dirname, "../client/build")));
+app.get("*", function (_, res) {
+  res.sendFile(
+    path.join(__dirname, "../client/build/index.html"),
+    function (err) {
+      res.status(500).send(err);
+    }
+  );
+});
 app.use(cors());
 
 app.use(
