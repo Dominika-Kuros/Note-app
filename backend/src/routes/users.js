@@ -1,0 +1,11 @@
+"use strict";
+exports.__esModule = true;
+var express_1 = require("express");
+var UserController = require("../controllers/users");
+var auth_1 = require("../middleware/auth");
+var router = express_1["default"].Router();
+router.get("/", auth_1["default"], UserController.getAuthenticatedUser);
+router.post("/signup", UserController.signUp);
+router.post("/login", UserController.login);
+router.post("/logout", UserController.logout);
+exports["default"] = router;

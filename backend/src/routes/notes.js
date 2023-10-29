@@ -1,0 +1,11 @@
+"use strict";
+exports.__esModule = true;
+var express_1 = require("express");
+var NotesController = require("../controllers/notes");
+var router = express_1["default"].Router();
+router.get("/", NotesController.getNotes);
+router.get("/:noteId", NotesController.getNote);
+router.post("/", NotesController.createNote);
+router.patch("/:noteId", NotesController.updateNote);
+router["delete"]("/:noteId", NotesController.deleteNote);
+exports["default"] = router;
