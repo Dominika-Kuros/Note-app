@@ -14,7 +14,7 @@
     "noLib": false,
     "preserveConstEnums": true,
     "esModuleInterop": true,
-    "outDir": "./dist",
+    "outDir": "/dist",
     "allowSyntheticDefaultImports": true
   },
   "exclude": ["node_modules", "typings/browser", "typings/browser.d.ts"],
