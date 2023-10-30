@@ -1,5 +1,5 @@
-import app from "./src/app";
-import env from "./src/util/validateEnv";
+import app from "./src/app.ts";
+import env from "./src/util/validateEnv.ts";
 import mongoose from "mongoose";
 
 const port = env.PORT;
