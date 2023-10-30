@@ -51,14 +51,14 @@ var __importDefault =
 Object.defineProperty(exports, "__esModule", { value: true });
 require("dotenv/config");
 const express_1 = __importDefault(require("express"));
-const notes_1 = __importDefault(require("./dist/src/routes/notes"));
-const users_1 = __importDefault(require("./dist/src/routes/users"));
+const notes_1 = __importDefault(require("./routes/notes"));
+const users_1 = __importDefault(require("./routes/users"));
 const morgan_1 = __importDefault(require("morgan"));
 const http_errors_1 = __importStar(require("http-errors"));
 const express_session_1 = __importDefault(require("express-session"));
-const validateEnv_1 = __importDefault(require("./dist/src/util/validateEnv"));
+const validateEnv_1 = __importDefault(require("./util/validateEnv"));
 const connect_mongo_1 = __importDefault(require("connect-mongo"));
-const auth_1 = __importDefault(require("./dist/src/middleware/auth"));
+const auth_1 = __importDefault(require("./middleware/auth"));
 const cors_1 = __importDefault(require("cors"));
 const app = (0, express_1.default)();
 app.use((0, morgan_1.default)("dev"));
