@@ -51,7 +51,7 @@ var __importDefault =
 Object.defineProperty(exports, "__esModule", { value: true });
 const validateEnv_1 = __importDefault(require("./dist/src/util/validateEnv"));
 const mongoose_1 = __importDefault(require("mongoose"));
-require("dotenv/config");
+import "dotenv/config";
 const express_1 = __importDefault(require("express"));
 const notes_1 = __importDefault(require("./dist/src/routes/notes"));
 const users_1 = __importDefault(require("./dist/src/routes/users"));
@@ -96,7 +96,8 @@ app.use((error, req, res, next) => {
   }
   res.status(statusCode).json({ error: errorMessage });
 });
-exports.default = app;
+const _default = app;
+export { _default as default };
 mongoose_1.default
   .connect(validateEnv_1.default.MONGO_CONNECTION_STRING)
   .then(() => {
