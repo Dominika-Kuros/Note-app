@@ -1,14 +1,14 @@
-import env from "./src/util/validateEnv";
+import env from "./util/validateEnv";
 import mongoose from "mongoose";
 import "dotenv/config";
 import express, { NextFunction, Request, Response } from "express";
-import notesRoutes from "./src/routes/notes";
-import userRoutes from "./src/routes/users";
+import notesRoutes from "./routes/notes";
+import userRoutes from "./routes/users";
 import morgan from "morgan";
 import createHttpError, { isHttpError } from "http-errors";
 import session from "express-session";
 import MongoStore from "connect-mongo";
-import requiresAuth from "./src/middleware/auth";
+import requiresAuth from "./middleware/auth";
 import cors from "cors";
 const port = env.PORT;
 
@@ -53,8 +53,6 @@ app.use((error: unknown, req: Request, res: Response, next: NextFunction) => {
   }
   res.status(statusCode).json({ error: errorMessage });
 });
-
-
 
 mongoose
   .connect(env.MONGO_CONNECTION_STRING)
