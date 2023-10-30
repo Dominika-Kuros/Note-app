@@ -5,8 +5,8 @@ var __importDefault =
     return mod && mod.__esModule ? mod : { default: mod };
   };
 Object.defineProperty(exports, "__esModule", { value: true });
-const app_1 = await require("./backend/dist/src/app");
-const validateEnv_1 = await require("./backend/dist/src/util/validateEnv");
+const app_1 = await require("./dist/src/app");
+const validateEnv_1 = await require("./dist/src/util/validateEnv");
 const mongoose_1 = await require("mongoose");
 const port = validateEnv_1.default.PORT;
 mongoose_1.default
