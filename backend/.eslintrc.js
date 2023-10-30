@@ -3,6 +3,7 @@ module.exports = {
     node: true,
     es2021: true,
   },
+
   extends: ["eslint:recommended", "plugin:@typescript-eslint/recommended"],
   overrides: [],
   parser: "@babel/eslint-parser",
@@ -13,5 +14,5 @@ module.exports = {
     sourceType: "module",
   },
   plugins: ["@typescript-eslint"],
-  rules: {},
+  rules: { "@typescript-eslint/no-var-requires": 0 },
 };
