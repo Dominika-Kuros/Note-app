@@ -2,13 +2,13 @@
   "name": "backend",
   "version": "1.0.0",
   "description": "",
-  "main": "dist/server.js",
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "kill-server": "pm2 kill",
     "api": "pm2 start process.json && pm2 logs",
     "build": "tsc",
-    "start": "node dist/src/server.js"
+    "start": "node server.js"
   },
   "keywords": [],
   "author": "",

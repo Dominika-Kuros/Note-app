@@ -1,5 +1,5 @@
 {
-  "script": "./dist/index.js",
+  "script": "server.js",
   "watch": true,
   "ignore_watch": ["node_modules", ".git"],
   "watch_options": {
