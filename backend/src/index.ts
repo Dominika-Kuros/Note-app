@@ -12,6 +12,7 @@ import requiresAuth from "./middleware/auth";
 import cors from "cors";
 const port = env.PORT;
 
+
 const app = express();
 
 app.use(morgan("dev"));

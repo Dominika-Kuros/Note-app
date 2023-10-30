@@ -26,7 +26,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const validateEnv_1 = __importDefault(require("./dist/util/validateEnv"));
+
 const mongoose_1 = __importDefault(require("mongoose"));
 require("dotenv/config");
 const express_1 = __importDefault(require("express"));
@@ -38,45 +38,46 @@ const express_session_1 = __importDefault(require("express-session"));
 const connect_mongo_1 = __importDefault(require("connect-mongo"));
 const auth_1 = __importDefault(require("./dist/middleware/auth"));
 const cors_1 = __importDefault(require("cors"));
-const port = validateEnv_1.default.PORT;
+const port = process.env.PORT;
 const app = (0, express_1.default)();
 app.use((0, morgan_1.default)("dev"));
 app.use(express_1.default.json());
 app.use((0, cors_1.default)());
-app.use((0, express_session_1.default)({
-    secret: validateEnv_1.default.SESSION_SECRET,
+app.use(
+  (0, express_session_1.default)({
+    secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: false,
     cookie: {
-        maxAge: 60 * 60 * 1000,
+      maxAge: 60 * 60 * 1000,
     },
     rolling: true,
     store: connect_mongo_1.default.create({
-        mongoUrl: validateEnv_1.default.MONGO_CONNECTION_STRING,
+      mongoUrl: process.env.MONGO_CONNECTION_STRING,
     }),
-}));
+  })
+);
 app.use("/api/users", users_1.default);
 app.use("/api/notes", auth_1.default, notes_1.default);
 app.use((req, res, next) => {
-    next((0, http_errors_1.default)(404, "Endpoint not found"));
+  next((0, http_errors_1.default)(404, "Endpoint not found"));
 });
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 app.use((error, req, res, next) => {
-    console.error(error);
-    let errorMessage = "An unknown error occurred";
-    let statusCode = 500;
-    if ((0, http_errors_1.isHttpError)(error)) {
-        statusCode = error.status;
-        errorMessage = error.message;
-    }
-    res.status(statusCode).json({ error: errorMessage });
+  console.error(error);
+  let errorMessage = "An unknown error occurred";
+  let statusCode = 500;
+  if ((0, http_errors_1.isHttpError)(error)) {
+    statusCode = error.status;
+    errorMessage = error.message;
+  }
+  res.status(statusCode).json({ error: errorMessage });
 });
 mongoose_1.default
-    .connect(validateEnv_1.default.MONGO_CONNECTION_STRING)
-    .then(() => {
+  .connect(process.env.MONGO_CONNECTION_STRING)
+  .then(() => {
     console.log("Mongoose connected");
     app.listen(port, () => {
-        console.log("Server running on port: " + port);
+      console.log("Server running on port: " + port);
     });
-})
-    .catch(console.error);
+  })
+  .catch(console.error);
