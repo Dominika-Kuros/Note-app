@@ -54,7 +54,7 @@ app.use((error: unknown, req: Request, res: Response, next: NextFunction) => {
   res.status(statusCode).json({ error: errorMessage });
 });
 
-export default app;
+
 
 mongoose
   .connect(env.MONGO_CONNECTION_STRING)
