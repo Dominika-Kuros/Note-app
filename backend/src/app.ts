@@ -1,5 +1,3 @@
-import env from "./util/validateEnv";
-import mongoose from "mongoose";
 import "dotenv/config";
 import express, { NextFunction, Request, Response } from "express";
 import notesRoutes from "./routes/notes";
@@ -7,18 +5,17 @@ import userRoutes from "./routes/users";
 import morgan from "morgan";
 import createHttpError, { isHttpError } from "http-errors";
 import session from "express-session";
+import env from "./util/validateEnv";
 import MongoStore from "connect-mongo";
 import requiresAuth from "./middleware/auth";
 import cors from "cors";
-const port = env.PORT;
-
 
 const app = express();
 
 app.use(morgan("dev"));
+app.use(cors());
 
 app.use(express.json());
-
 app.use(cors());
 
 app.use(
@@ -55,12 +52,4 @@ app.use((error: unknown, req: Request, res: Response, next: NextFunction) => {
   res.status(statusCode).json({ error: errorMessage });
 });
 
-mongoose
-  .connect(env.MONGO_CONNECTION_STRING)
-  .then(() => {
-    console.log("Mongoose connected");
-    app.listen(port, () => {
-      console.log("Server running on port: " + port);
-    });
-  })
-  .catch(console.error);
+export default app;
