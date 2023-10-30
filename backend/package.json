@@ -6,7 +6,6 @@
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "tsc": "tsc --watch",
     "kill-server": "pm2 kill",
     "api": "pm2 start process.json && pm2 logs",
     "build": "tsc",
