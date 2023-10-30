@@ -2,7 +2,7 @@ import { ConflictError, UnauthorizedError } from "../errors/http_errors";
 import { Note } from "../models/note";
 import { User } from "../models/user";
 
-const URL = "https://note-app-three-taupe.vercel.app";
+const URL = "https://note-app-backend-lawi.onrender.com/";
 
 async function fetchData(input: RequestInfo, init?: RequestInit) {
   const response = await fetch(input, init);
