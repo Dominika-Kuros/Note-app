@@ -13,7 +13,16 @@ import cors from "cors";
 const app = express();
 
 app.use(morgan("dev"));
-app.use(cors({ origin: "https://note-app-project-6hm3.onrender.com/" }));
+app.use(
+  cors({
+    origin: [
+      "https://note-app-project-6hm3.onrender.com/",
+      "http://192.168.0.12:3000",
+    ],
+    credentials: true,
+    methods: ["GET", "PUT", "POST", "OPTIONS", "DELETE"],
+  })
+);
 
 app.use(express.json());
 app.use(cors());
