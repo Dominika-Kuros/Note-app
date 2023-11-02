@@ -11,6 +11,7 @@ import requiresAuth from "./middleware/auth";
 import cors from "cors";
 
 const app = express();
+app.use(express.static("build"));
 app.use(express.json());
 app.use(morgan("dev"));
 app.use(cors());
