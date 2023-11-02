@@ -4,17 +4,7 @@ import mongoose from "mongoose";
 
 const port = env.PORT;
 
-app.use((req, res, next) => {
-  res.setHeader(
-    "Access-Control-Allow-Origin",
-    "https://note-app-project-6hm3.onrender.com/"
-  );
-  res.header(
-    "Access-Control-Allow-Headers",
-    "Origin, X-Requested-With, Content-Type, Accept"
-  );
-  next();
-});
+
 
 mongoose
   .connect(env.MONGO_CONNECTION_STRING)
