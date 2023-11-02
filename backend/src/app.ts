@@ -11,7 +11,7 @@ import requiresAuth from "./middleware/auth";
 import cors from "cors";
 
 const app = express();
-
+app.use(express.json());
 app.use(morgan("dev"));
 app.use(cors());
 app.use((req, res, next) => {
@@ -26,7 +26,7 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use(express.json());
+
 
 app.use(
   session({

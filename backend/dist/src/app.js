@@ -38,6 +38,7 @@ const connect_mongo_1 = __importDefault(require("connect-mongo"));
 const auth_1 = __importDefault(require("./middleware/auth"));
 const cors_1 = __importDefault(require("cors"));
 const app = (0, express_1.default)();
+app.use(express_1.default.json());
 app.use((0, morgan_1.default)("dev"));
 app.use((0, cors_1.default)());
 app.use((req, res, next) => {
@@ -45,7 +46,6 @@ app.use((req, res, next) => {
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
     next();
 });
-app.use(express_1.default.json());
 app.use((0, express_session_1.default)({
     secret: validateEnv_1.default.SESSION_SECRET,
     resave: false,
