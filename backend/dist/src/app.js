@@ -42,8 +42,9 @@ app.use(express_1.default.json());
 app.use((0, morgan_1.default)("dev"));
 app.use((0, cors_1.default)());
 app.use((req, res, next) => {
-    res.setHeader("Access-Control-Allow-Origin", "https://note-app-project-6hm3.onrender.com/");
+    res.header("Access-Control-Allow-Origin", "https://note-app-project-6hm3.onrender.com/");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
+    res.header("Access-Control-Allow-Origin", "GET, HEAD, OPTIONS, POST, DELETE");
     next();
 });
 app.use((0, express_session_1.default)({

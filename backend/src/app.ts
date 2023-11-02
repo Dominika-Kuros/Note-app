@@ -14,8 +14,9 @@ const app = express();
 app.use(express.json());
 app.use(morgan("dev"));
 app.use(cors());
+
 app.use((req, res, next) => {
-  res.setHeader(
+  res.header(
     "Access-Control-Allow-Origin",
     "https://note-app-project-6hm3.onrender.com/"
   );
@@ -23,6 +24,7 @@ app.use((req, res, next) => {
     "Access-Control-Allow-Headers",
     "Origin, X-Requested-With, Content-Type, Accept, Authorization"
   );
+  res.header("Access-Control-Allow-Origin", "GET, HEAD, OPTIONS, POST, DELETE");
   next();
 });
 
