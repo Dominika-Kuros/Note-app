@@ -22,7 +22,10 @@ async function fetchData(input: RequestInfo, init?: RequestInit) {
 const URL = "https://note-app-backend-lawi.onrender.com";
 
 export async function getLoggedInUser(): Promise<User> {
-  const response = await fetchData(URL + "/api/users", { method: "GET" });
+  const response = await fetchData(
+    "https://note-app-backend-lawi.onrender.com/api/users",
+    { method: "GET" }
+  );
   return response.json();
 }
 
@@ -33,13 +36,16 @@ export interface SignUpCredentials {
 }
 
 export async function signUp(credentials: SignUpCredentials): Promise<User> {
-  const response = await fetchData(URL + "/api/users/signup", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(credentials),
-  });
+  const response = await fetchData(
+    "https://note-app-backend-lawi.onrender.com/api/users/signup",
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(credentials),
+    }
+  );
   return response.json();
 }
 
@@ -49,13 +55,16 @@ export interface LoginCredentials {
 }
 
 export async function login(credentials: LoginCredentials): Promise<User> {
-  const response = await fetchData(URL + "/api/users/login", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(credentials),
-  });
+  const response = await fetchData(
+    "https://note-app-backend-lawi.onrender.com/api/users/login",
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(credentials),
+    }
+  );
   return response.json();
 }
 
